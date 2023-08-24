@@ -1,0 +1,14 @@
+version: '3'
+services:
+  keepalived:
+    container_name: keepalived
+    image: galtjay/keepalived:latest
+    network_mode: host
+    volumes:
+      - ./keepalived.conf.master:/etc/keepalived/keepalived.conf 
+      #- ./keepalived.conf.backup:/etc/keepalived/keepalived.conf
+      #重点！！！注意，请记得chmod +x chk_nginx.sh,给脚本执行权限。内置的监控脚本监控的是443端口。
+      - ./chk_svc.sh:/etc/keepalived/chk_svc.sh 
+      
+    privileged: true
+    restart: always

@@ -1,0 +1,28 @@
+global_defs {
+router_id NodeA #设备标识
+script_user root #赋予检测脚本的权限
+enable_script_security
+}
+vrrp_script chk_nginx
+{
+script "/etc/keepalived/chk_svc.sh" #健康检查nginx状态的脚本文件
+interval 2 #检测脚本执行的间隔时间
+weight -20
+}
+vrrp_instance VI_1 {
+state BACKUP #服务器属性（主/备）
+interface ens33
+virtual_router_id 50 #主备机的虚拟路由器ID即VRRP-ID必须相同
+priority 90 #主备机配置不同优先级，主机优先级>备机优先级
+advert_int 1
+authentication {
+auth_type PASS
+auth_pass changeyourpasshere
+}
+virtual_ipaddress {
+192.168.100.213/24 #对外服务的VRRP虚拟IP地址
+}
+track_script { #调用健康监测模板，一定要放在vip的配置下面
+chk_nginx
+}
+}
