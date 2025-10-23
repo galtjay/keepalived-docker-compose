@@ -11,4 +11,4 @@ Provide a one-click method to start keepalived using docker-compose.
 2. In the `keepalived.conf.master` and `keepalived.conf.backup` files, adjust the `interface` parameter to match the network interface on your machine. Modify the `auth_pass` password as needed.
 
 ## 更多信息 more info:
-[访问博客]([https://www.baidu.com](https://chuizi.tech/archives/%E4%B8%80%E9%94%AE%E9%83%A8%E7%BD%B2keepalived%E5%9F%BA%E4%BA%8Edocker%20compose))
+[访问博客]([https://www.baidu.com](https://chuizi.tech/archives/%E4%B8%80%E9%94%AE%E9%83%A8%E7%BD%B2keepalived%E5%9F%BA%E4%BA%8Edocker%20compose)
